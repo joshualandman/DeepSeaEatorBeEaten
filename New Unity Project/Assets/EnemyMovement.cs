@@ -8,10 +8,12 @@ public class EnemyMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Vector2 newVelocity = rigidbody2D.velocity;
 
-		xSpeed = Random.Range (-.1f, .1f);
-		ySpeed = Random.Range (-.1f, .1f);
-	
+		newVelocity.x = Random.Range (-3f, 3f);
+		newVelocity.y = Random.Range (-2f, 2f);
+
+		rigidbody2D.velocity = newVelocity;
 	}
 	
 	// Update is called once per frame
@@ -31,9 +33,6 @@ public class EnemyMovement : MonoBehaviour {
 			veloc.y = -veloc.y;
 		}
 
-		newPosition.x += xSpeed;
-		newPosition.y += ySpeed;
-
-		transform.position = newPosition;
+		rigidbody2D.velocity = veloc;
 	}
 }

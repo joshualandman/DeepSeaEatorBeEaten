@@ -26,18 +26,26 @@ public class Player : MonoBehaviour {
 		Debug.Log ("Speed is " + rigidbody2D.velocity);
 	}
 
-	/*void onCollisionEnter2D(Collision2D other)
+	void onCollisionEnter2D(Collision2D other)
 	{
 		if(other.gameObject.tag == "enemy")
 		{
+			Debug.Log("Collision happened!");
 			Eat(other.gameObject);
 		}
 	}
 
 	void Eat(GameObject gameobject)
 	{
-		transform.localScale = transform.localScale * 1.1;
+		Vector3 newScale = transform.localScale;
 
+		newScale.x = newScale.x * 1.1f;
+		newScale.y = newScale.y * 1.1f;
 
-	}*/
+		transform.localScale = newScale;
+
+		Vector3 _other = new Vector3 (Random.Range (-19f, 19f), Random.Range (-9f, 9f), 0);
+
+		gameobject.transform.position = _other;
+	}
 }
