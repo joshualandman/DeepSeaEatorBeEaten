@@ -21,8 +21,8 @@ public class Eat : MonoBehaviour {
 	{
 		Vector3 newScale = transform.parent.localScale;
 		
-		newScale.x = newScale.x * 1.1f;
-		newScale.y = newScale.y * 1.1f;
+		newScale.x = newScale.x * 1.01f;
+		newScale.y = newScale.y * 1.01f;
 		
 		transform.parent.localScale = newScale;
 	}
