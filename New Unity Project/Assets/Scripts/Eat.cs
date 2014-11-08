@@ -3,17 +3,32 @@ using System.Collections;
 
 public class Eat : MonoBehaviour {
 
+	GameObject player;
+	GameObject enemy;
+	float playerNum;
+	float enemyNum;
 
-	void OnCollisionEnter2D(Collision2D other)
+	void Start()
 	{
-		foreach(Transform target in other.transform)
-		{ 
+		player = GameObject.Find("Player");
+		playerNum = player.GetComponent<Player>().bodySize;
+	}
+	
+	void OnCollisionEnter2D(Collision2D other)
+	{		
+		enemy = GameObject.Find(other.gameObject.name);
+		enemyNum = other.gameObject.GetComponent<EnemyMovement>().bodySize;
 
-			if(target.gameObject.name == "fangtoothbody")
-			{ 
-				eatEnemy(target.gameObject);
-				Destroy(other.gameObject);
-			} 
+		foreach(Transform target in other.transform)
+		{
+			if(target.gameObject.name == "body")
+			{
+				if(enemyNum < playerNum)
+				{
+					eatEnemy(target.gameObject);
+					Destroy(other.gameObject);
+				}
+			}
 		}
 	}
 	
@@ -21,8 +36,8 @@ public class Eat : MonoBehaviour {
 	{
 		Vector3 newScale = transform.parent.localScale;
 		
-		newScale.x = newScale.x * 1.01f;
-		newScale.y = newScale.y * 1.01f;
+		newScale.x = newScale.x * 1.06f;
+		newScale.y = newScale.y * 1.06f;
 		
 		transform.parent.localScale = newScale;
 	}

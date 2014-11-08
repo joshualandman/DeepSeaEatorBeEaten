@@ -10,7 +10,9 @@ public class EnemyMovement : MonoBehaviour {
 	float maxForce; 
 	float mass = 10f; //arbitrary value will alter acceleration
 	public GameObject background;
-	
+	public float bodySize;
+	public float headSize;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -27,13 +29,13 @@ public class EnemyMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		CalcSteeringForce();
+		/*CalcSteeringForce();
 		velocity += acceleration;
 		velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
 		pos += velocity;
 		transform.position = pos;
-		acceleration *= 0;
-		Debug.Log(background.renderer.bounds.min.x);
+		acceleration *= 0;*/
+		//Debug.Log(background.renderer.bounds.min.x);
 	}
 	
 	void CalcSteeringForce()

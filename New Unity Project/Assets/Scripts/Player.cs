@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
 	{
 		//Vector2 velocity = new Vector2.zero();
 		//Vector2 position = transform.position;
-		//Vector2 acceleration = new Vector2(0,1);;
+		//Vector2 acceleration = new Vector2(0,1);
 	}
 	
 	// Update is called once per frame
