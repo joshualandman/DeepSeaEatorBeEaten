@@ -58,7 +58,8 @@ public class GenerateEnemies : MonoBehaviour {
 
 					clone.SetActive(true);
 
-					clone.GetComponent<Enemy>().sizeNum = sizes[i];
+					clone.GetComponent<Enemy>().headSize = sizes[i];
+					clone.GetComponent<Enemy>().bodySize = sizes[i];
 
 					Vector3 baseScale = player.transform.localScale;
 

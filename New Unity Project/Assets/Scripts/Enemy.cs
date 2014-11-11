@@ -5,7 +5,4 @@ public class Enemy : MonoBehaviour {
 
 	public float bodySize;
 	public float headSize;
-	
-	public float sizeNum;
-
 }
