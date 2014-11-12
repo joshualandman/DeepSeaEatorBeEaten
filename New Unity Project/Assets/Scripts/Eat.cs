@@ -11,16 +11,20 @@ public class Eat : MonoBehaviour {
 
 	void Start()
 	{
+		//Set initial value of enemy
+		enemy = new GameObject ();
+
 		//set player equal to player and set his size
 		player = GameObject.Find("Player");
 		playerNum = player.GetComponent<Player>().bodySize;
+
 	}
 	
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		//set enemy equal to enemy and set his size
 		enemy = GameObject.Find(other.gameObject.name);
-		enemyNum = other.gameObject.GetComponent<EnemyMovement>().bodySize;
+		enemyNum = other.gameObject.GetComponent<Enemy>().bodySize;
 
 		//loop through the transforms in other
 		foreach(Transform target in other.transform)
