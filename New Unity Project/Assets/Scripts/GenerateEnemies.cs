@@ -19,7 +19,7 @@ public class GenerateEnemies : MonoBehaviour {
 	List<float> sizes = new List<float>();
 
 	//A List for all of the current enemies on the screen
-	List<GameObject> currentClones;
+	List<GameObject> currentClones = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () {
