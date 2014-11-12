@@ -40,13 +40,18 @@ public class GenerateEnemies : MonoBehaviour {
 	void Update () {
 		
 		//A basic time-based if statement to tell when to spawn
-		time++;
-		if(time > 600)
+		if(currentClones.Count < 4)
 		{
-			//Reset timer
-			time = 0;
-			
 			SpawnWave();
+		}
+
+		//A for loop to remove enemies from the List currentClones if it is destroyed
+		for(int i = 0; i < currentClones.Count; i++)
+		{
+			if(currentClones[i] == null)
+			{
+				currentClones.Remove(currentClones[i]);
+			}
 		}
 	}
 	
@@ -74,7 +79,7 @@ public class GenerateEnemies : MonoBehaviour {
 	void SpawnEnemy(GameObject gameObject, float size)
 	{
 		//Instantiates a new enemy from the prefab gameObject within the boundary of x = (-17,17) and y = (-10,10)
-		GameObject clone = (GameObject) Instantiate(gameObject, new Vector3(Random.Range(-17f, 17f), Random.Range(-10f,10f), 0), new Quaternion(0,0,0,0));
+		GameObject clone = (GameObject) Instantiate(gameObject, new Vector3(Random.Range(-24f, 24f), Random.Range(-13f,13f), 0), new Quaternion(0,0,0,0));
 		//Sets the new enemy GameObject to active so that it will move and be seen
 		clone.SetActive(true);
 		

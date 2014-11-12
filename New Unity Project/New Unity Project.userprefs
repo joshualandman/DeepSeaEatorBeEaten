@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GenerateEnemies.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Eat.cs">
     <Files>
-      <File FileName="Assets\Scripts\GenerateEnemies.cs" Line="109" Column="1" />
+      <File FileName="Assets\Scripts\GenerateEnemies.cs" Line="48" Column="80" />
+      <File FileName="Assets\Scripts\Eat.cs" Line="54" Column="1" />
+      <File FileName="Assets\Scripts\GenerateEnemies.cs" Line="114" Column="1" />
+      <File FileName="Assets\Scripts\Player.cs" Line="12" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
