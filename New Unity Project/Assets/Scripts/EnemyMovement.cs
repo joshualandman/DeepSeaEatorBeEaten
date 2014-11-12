@@ -10,8 +10,6 @@ public class EnemyMovement : MonoBehaviour {
 	float maxForce; 
 	float mass = 10f; //arbitrary value will alter acceleration
 	public GameObject background;
-	public float bodySize;
-	public float headSize;
 
 	// Use this for initialization
 	void Start ()
