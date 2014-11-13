@@ -22,21 +22,28 @@ public class Eat : MonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D other)
 	{
+
 		//set enemy equal to enemy and set his size
 		enemy = GameObject.Find(other.gameObject.name);
-		enemyNum = other.gameObject.GetComponent<Enemy>().bodySize;
 
-		//loop through the transforms in other
-		foreach(Transform target in other.transform)
+		//If the player is colliding into something other than the top-sea or sea-bed gameobject then continue
+		if(enemy.name != "top-sea" && enemy.name != "sea-bed")
 		{
-			//find the child that we want
-			if(target.gameObject.name == "body")
+			//Get the size of the enemy gameobect the player is colliding with
+			enemyNum = enemy.GetComponent<Enemy>().bodySize;
+
+			//loop through the transforms in other
+			foreach(Transform target in other.transform)
 			{
-				//if enemy is smaller than player, get eaten
-				if(enemyNum < playerNum)
+				//find the child that we want
+				if(target.gameObject.name == "body")
 				{
-					eatEnemy(target.gameObject);
-					Destroy(other.gameObject);
+					//if enemy is smaller than player, get eaten
+					if(enemyNum < playerNum)
+					{
+						eatEnemy(target.gameObject);
+						Destroy(other.gameObject);
+					}
 				}
 			}
 		}
@@ -44,14 +51,26 @@ public class Eat : MonoBehaviour {
 	
 	void eatEnemy(GameObject gameobject)
 	{
+		//Adds the enemy size to the player's score
+		transform.parent.gameObject.GetComponent<Player>().score += enemyNum;
+
+		//Adds the enemy size to a counter to determine if all other enemies on the screen should have their size decreased
+		GameObject.Find ("Background").GetComponent<GenerateEnemies>().eatenCounter += enemyNum;
+
 		//save player scale
 		Vector3 newScale = transform.parent.localScale;
 
 		//enlarge scale by rel num
-		newScale.x = newScale.x * 1.06f;
-		newScale.y = newScale.y * 1.06f;
+		newScale.x = newScale.x * ((30f + enemyNum) / 30f);
+		newScale.y = newScale.y * ((30f + enemyNum) / 30f);
 
 		//change player's scale to new scale
 		transform.parent.localScale = newScale;
+
+		//Scale the camera's view
+		GameObject.Find ("Main Camera").camera.orthographicSize *= ((30f + enemyNum) / 30f);
+
+		//Increase the acceleration of the player as he grows
+		GameObject.Find("Player").GetComponent<Player>().acceleration *=  ((30f + enemyNum) / 30f);
 	}
 }

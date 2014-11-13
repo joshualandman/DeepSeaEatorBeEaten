@@ -1,13 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyEat.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GenerateEnemies.cs">
     <Files>
-      <File FileName="Assets\Scripts\GenerateEnemies.cs" Line="48" Column="80" />
-      <File FileName="Assets\Scripts\Eat.cs" Line="27" Column="21" />
-      <File FileName="Assets\Scripts\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="6" Column="12" />
-      <File FileName="Assets\Scripts\EnemyMovement.cs" Line="74" Column="23" />
-      <File FileName="Assets\Scripts\EnemyEat.cs" Line="26" Column="14" />
+      <File FileName="Assets\Scripts\Player.cs" Line="10" Column="9" />
+      <File FileName="Assets\Scripts\Eat.cs" Line="32" Column="70" />
+      <File FileName="Assets\Scripts\ScreenBound.cs" Line="34" Column="61" />
+      <File FileName="Assets\Scripts\GenerateEnemies.cs" Line="43" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

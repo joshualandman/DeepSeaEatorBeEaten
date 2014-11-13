@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class GenerateEnemies : MonoBehaviour {
 
-	float time = 0;
-	
 	//Used to get the scale of the player when spawning new enemies
 	public GameObject player;
 	//Used as prefabs to generate enemies from
@@ -21,6 +19,9 @@ public class GenerateEnemies : MonoBehaviour {
 	//A List for all of the current enemies on the screen
 	List<GameObject> currentClones = new List<GameObject>();
 
+	//A counter to determine if all other enemies should have their sizes reduced
+	public float eatenCounter;
+
 	// Use this for initialization
 	void Start () {
 		//Adds all of the enemies prefabs to the List for prefabs
@@ -34,13 +35,15 @@ public class GenerateEnemies : MonoBehaviour {
 		sizes.Add (2f);
 		sizes.Add (3f);
 		sizes.Add (4f);
+
+		eatenCounter = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-		//A basic time-based if statement to tell when to spawn
-		if(currentClones.Count < 4)
+		//An if statement to tell when to spawn more enemies
+		if(CheckEatenAllSmall())
 		{
 			SpawnWave();
 		}
@@ -52,6 +55,13 @@ public class GenerateEnemies : MonoBehaviour {
 			{
 				currentClones.Remove(currentClones[i]);
 			}
+		}
+
+		//An if statement to see if enemies should have their sizes decreased
+		if(eatenCounter >= 10)
+		{
+			ReduceSize();
+			eatenCounter -= 10;
 		}
 	}
 	
@@ -103,11 +113,35 @@ public class GenerateEnemies : MonoBehaviour {
 		//A List of integers
 		List<int> numberOf =  new List<int>();
 		//Adds four random numbers to the List
-		numberOf.Add (Random.Range (3, 7));
-		numberOf.Add (Random.Range (1, 4));
-		numberOf.Add (Random.Range (1, 4));
+		numberOf.Add (Random.Range (4, 8));
+		numberOf.Add (Random.Range (3, 5));
 		numberOf.Add (Random.Range (1, 3));
+		numberOf.Add (Random.Range (1, 2));
 		//Return the List
 		return numberOf;
+	}
+
+	//A method to reduce the sizes of the enemies on screen
+	void ReduceSize()
+	{
+		foreach(GameObject obj in currentClones)
+		{
+			obj.GetComponent<Enemy>().bodySize -= 1;
+			obj.GetComponent<Enemy>().headSize -= 1;
+		}
+	}
+
+	//A method to check if all of the size one and two fish have been eaten
+	bool CheckEatenAllSmall()
+	{
+		foreach(GameObject obj in currentClones)
+		{
+			if(obj.GetComponent<Enemy>().bodySize < 3)
+			{
+				return false;
+			}
+		}
+
+		return true;
 	}
 }

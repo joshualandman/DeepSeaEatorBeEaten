@@ -16,28 +16,31 @@ public class EnemyEat : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-
 
 	}
 
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		headSize = GetComponent<Enemy>().headSize;
+		//Get the head size from the parent gameobject's script Enemy
+		headSize = transform.parent.gameObject.GetComponent<Enemy>().headSize;
 
+		//Checks if the colliding GameObject is the Player
 		if(other.transform.name == "Player")
 		{
-			
+			//Goes through each transform object in Player's Collider
 			foreach(Transform target in other.transform)
 			{
-				Debug.Log("GameObject: " + other.gameObject.name + "   Transform: " + target);
-				
+				//Debug.Log("GameObject: " + other.gameObject.name + "   Transform: " + target);
+
+				//Checks if the colliding collider is that of the body
 				if(target.transform.name == "body")
 				{
 					//if enemy is smaller than player, get eaten
 					if(headSize > playerNum)
 					{
-						Debug.Log("ADQWEQWEQ");
+						//Kill the Player
+						Debug.Log("You Died!!!");
+						//Application.LoadLevel("ENDSCREEN");
 						//Destroy(player);
 					}
 				}
