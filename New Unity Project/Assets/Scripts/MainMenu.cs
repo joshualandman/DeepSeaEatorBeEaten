@@ -62,16 +62,18 @@ public class MainMenu : MonoBehaviour {
 
 	void OnGUI ()
 	{
+
+
 		//Main menu GUI
 		if(main == true)
 		{
 			//if the player wants to start the game
-			if(GUI.Button(new Rect(259.5f,620f,445f,101.5f),startButton))
+			if(GUI.Button(new Rect((Screen.width / 2) - 325, (Screen.height / 2) + 125, 315f, 85f),startButton))
 			{
 				startClick = true;
 			}
 			//if the player wants to see the instructions
-			else if(GUI.Button(new Rect(700f,620f,445f,101.5f),instructButton))
+			else if(GUI.Button(new Rect((Screen.width / 2) + 10, (Screen.height / 2) + 125, 315f, 85f),instructButton))
 			{
 				instructClick = true;
 			}
@@ -80,7 +82,7 @@ public class MainMenu : MonoBehaviour {
 		else
 		{
 			//if the player wants to leave the instructions menu
-			if(GUI.Button(new Rect(835f,765f,277f,112.5f),backButton))
+			if(GUI.Button(new Rect((Screen.width / 2) + 126, (Screen.height / 2) + 235, 165f, 95f),backButton))
 			{
 				backClick = true;
 			}

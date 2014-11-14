@@ -42,11 +42,7 @@ public class GenerateEnemies : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		//An if statement to tell when to spawn more enemies
-		if(CheckEatenAllSmall())
-		{
-			SpawnWave();
-		}
+
 
 		//A for loop to remove enemies from the List currentClones if it is destroyed
 		for(int i = 0; i < currentClones.Count; i++)
@@ -55,6 +51,12 @@ public class GenerateEnemies : MonoBehaviour {
 			{
 				currentClones.Remove(currentClones[i]);
 			}
+		}
+
+		//An if statement to tell when to spawn more enemies
+		if(CheckEatenAllSmall())
+		{
+			SpawnWave();
 		}
 
 		//An if statement to see if enemies should have their sizes decreased
@@ -88,8 +90,8 @@ public class GenerateEnemies : MonoBehaviour {
 	//A method to spawn an enemy
 	void SpawnEnemy(GameObject gameObject, float size)
 	{
-		//Instantiates a new enemy from the prefab gameObject within the boundary of x = (-17,17) and y = (-10,10)
-		GameObject clone = (GameObject) Instantiate(gameObject, new Vector3(Random.Range(-24f, 24f), Random.Range(-13f,13f), 0), new Quaternion(0,0,0,0));
+		//Instantiates a new enemy from the prefab gameObject arround the center of the screen proportionate to the scale of the player
+		GameObject clone = (GameObject) Instantiate(gameObject, new Vector3(Random.Range(-24f * player.transform.localScale.x, 24f  * player.transform.localScale.x), Random.Range(-13f  * player.transform.localScale.y,13f  * player.transform.localScale.y), 0), new Quaternion(0,0,0,0));
 		//Sets the new enemy GameObject to active so that it will move and be seen
 		clone.SetActive(true);
 		

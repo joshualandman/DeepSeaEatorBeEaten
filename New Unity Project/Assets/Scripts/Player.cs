@@ -28,7 +28,12 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Swimming ();
 
+	}
+
+	void Swimming()
+	{
 		//Move horizontally
 		if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
@@ -36,7 +41,7 @@ public class Player : MonoBehaviour {
 			transform.rotation = new Quaternion(0,0,0,1);
 			//Increase velocity to move to the left
 			velocity.x -= acceleration.x; 
-
+			
 		}
 		if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
@@ -57,10 +62,10 @@ public class Player : MonoBehaviour {
 			//Increase the velocity to move down
 			velocity.y -= acceleration.y;
 		}
-
+		
 		//Move based on current velocity
 		transform.position += velocity;
-
+		
 		//Applies a drag for the horizontal movement
 		if(velocity.x > 0)
 		{
@@ -70,7 +75,7 @@ public class Player : MonoBehaviour {
 		{
 			velocity.x += drag;
 		}
-
+		
 		//Applies a drag for the vertical movement
 		if(velocity.y > 0)
 		{
@@ -80,10 +85,7 @@ public class Player : MonoBehaviour {
 		{
 			velocity.y += drag;
 		}
-
-		//DEBUGGING
-		//Debug.Log ("transform right is " + transform.right + "   horizontal is " + horizontal);
-
-
 	}
+
+
 }

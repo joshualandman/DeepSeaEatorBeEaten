@@ -4,33 +4,28 @@ using System.Collections;
 public class Eat : MonoBehaviour {
 
 	//declare player and enemy and their size numbers
-	GameObject player;
-	GameObject enemy;
+
 	float playerNum = 0.0f;
 	float enemyNum = 0.0f;
 
 	void Start()
 	{
-		//Set initial value of enemy
-		enemy = new GameObject ();
 
 		//set player equal to player and set his size
-		player = GameObject.Find("Player");
-		playerNum = player.GetComponent<Player>().bodySize;
+		playerNum = transform.parent.GetComponent<Player>().bodySize;
 
 	}
 	
 	void OnCollisionEnter2D(Collision2D other)
 	{
 
-		//set enemy equal to enemy and set his size
-		enemy = GameObject.Find(other.gameObject.name);
-
 		//If the player is colliding into something other than the top-sea or sea-bed gameobject then continue
-		if(enemy.name != "top-sea" && enemy.name != "sea-bed")
+		if(other.gameObject.name != "top-sea" && other.gameObject.name != "sea-bed")
 		{
 			//Get the size of the enemy gameobect the player is colliding with
-			enemyNum = enemy.GetComponent<Enemy>().bodySize;
+			enemyNum = other.gameObject.GetComponent<Enemy>().bodySize;
+
+			Debug.Log(enemyNum);
 
 			//loop through the transforms in other
 			foreach(Transform target in other.transform)
@@ -41,6 +36,8 @@ public class Eat : MonoBehaviour {
 					//if enemy is smaller than player, get eaten
 					if(enemyNum < playerNum)
 					{
+
+						Debug.Log("Enemy: " + enemyNum + " Player: " + playerNum);
 						eatEnemy(target.gameObject);
 						Destroy(other.gameObject);
 					}
