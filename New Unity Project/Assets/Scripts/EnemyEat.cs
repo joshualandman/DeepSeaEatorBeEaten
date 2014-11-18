@@ -39,8 +39,10 @@ public class EnemyEat : MonoBehaviour {
 					if(headSize > playerNum)
 					{
 						//Kill the Player
-						Debug.Log("You Died!!!");
-						//Application.LoadLevel("ENDSCREEN");
+						//Debug.Log("You Died!!!");
+
+						Application.LoadLevel("end");
+
 						//Destroy(player);
 					}
 				}

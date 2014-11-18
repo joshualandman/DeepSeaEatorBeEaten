@@ -25,7 +25,7 @@ public class Eat : MonoBehaviour {
 			//Get the size of the enemy gameobect the player is colliding with
 			enemyNum = other.gameObject.GetComponent<Enemy>().bodySize;
 
-			Debug.Log(enemyNum);
+			//Debug.Log(enemyNum);
 
 			//loop through the transforms in other
 			foreach(Transform target in other.transform)
@@ -37,11 +37,19 @@ public class Eat : MonoBehaviour {
 					if(enemyNum < playerNum)
 					{
 
-						Debug.Log("Enemy: " + enemyNum + " Player: " + playerNum);
+						//Debug.Log("Enemy: " + enemyNum + " Player: " + playerNum);
 						eatEnemy(target.gameObject);
 						Destroy(other.gameObject);
 					}
 				}
+
+				/*if(enemyHeadNum < playerHeadNum)
+				{
+					
+					Debug.Log("Enemy: " + enemyHeadNum + " Player: " + playerHeadNum);
+					eatEnemy(target.gameObject);
+					Destroy(other.gameObject);
+				}*/
 			}
 		}
 	}
@@ -49,10 +57,13 @@ public class Eat : MonoBehaviour {
 	void eatEnemy(GameObject gameobject)
 	{
 		//Adds the enemy size to the player's score
-		transform.parent.gameObject.GetComponent<Player>().score += enemyNum;
+		transform.parent.gameObject.GetComponent<Player>().score += (int)enemyNum;
 
 		//Adds the enemy size to a counter to determine if all other enemies on the screen should have their size decreased
-		GameObject.Find ("Background").GetComponent<GenerateEnemies>().eatenCounter += enemyNum;
+		//GameObject.Find ("Background").GetComponent<GenerateEnemies>().eatenCounter += enemyNum;
+
+		//Adds the enemy size to a counter to determine if all other enemies on the screen should have their size decreased
+		GameObject.Find ("Background").GetComponent<GenerateEnemies> ().ReduceSize ();
 
 		//save player scale
 		Vector3 newScale = transform.parent.localScale;
@@ -69,5 +80,8 @@ public class Eat : MonoBehaviour {
 
 		//Increase the acceleration of the player as he grows
 		GameObject.Find("Player").GetComponent<Player>().acceleration *=  ((30f + enemyNum) / 30f);
+
+		//Increase the acceleration of the player as he grows
+		GameObject.Find("Player").GetComponent<Player>().drag *=  ((30f + enemyNum) / 30f);
 	}
 }

@@ -13,14 +13,14 @@ public class ScreenBound : MonoBehaviour {
 	
 		Vector3 newPosition = transform.position;
 
-		if(newPosition.x > 37.5)
+		if(newPosition.x > 27.5)
 		{
-			newPosition.x = 37.5f;
+			newPosition.x = 27.5f;
 			GetComponent<Player>().velocity.x = 0;
 		}
-		else if(newPosition.x < -37.5)
+		else if(newPosition.x < -27.5)
 		{
-			newPosition.x = -37.5f;
+			newPosition.x = -27.5f;
 			GetComponent<Player>().velocity.x = 0;
 		}
 

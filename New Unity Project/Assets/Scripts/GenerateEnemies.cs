@@ -25,33 +25,26 @@ public class GenerateEnemies : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//Adds all of the enemies prefabs to the List for prefabs
-		objects.Add (newEnemy1);
-		objects.Add (newEnemy2);
-		objects.Add (newEnemy3);
-		objects.Add (newEnemy4);
+		objects.Add(newEnemy1);
+		objects.Add(newEnemy2);
+		objects.Add(newEnemy3);
+		objects.Add(newEnemy4);
 		
 		//Adds all of the sizes for enemies to the List for sizes
-		sizes.Add (1f);
-		sizes.Add (2f);
-		sizes.Add (3f);
-		sizes.Add (4f);
+		sizes.Add(1f);
+		sizes.Add(2f);
+		sizes.Add(3f);
+		sizes.Add(4f);
 
 		eatenCounter = 0;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 		
 
 
-		//A for loop to remove enemies from the List currentClones if it is destroyed
-		for(int i = 0; i < currentClones.Count; i++)
-		{
-			if(currentClones[i] == null)
-			{
-				currentClones.Remove(currentClones[i]);
-			}
-		}
+		removeNull();
 
 		//An if statement to tell when to spawn more enemies
 		if(CheckEatenAllSmall())
@@ -60,11 +53,11 @@ public class GenerateEnemies : MonoBehaviour {
 		}
 
 		//An if statement to see if enemies should have their sizes decreased
-		if(eatenCounter >= 10)
-		{
-			ReduceSize();
-			eatenCounter -= 10;
-		}
+		//if(eatenCounter >= 10)
+		//{
+		//	ReduceSize();
+		//	eatenCounter -= 10;
+		//}
 	}
 	
 	//A method to generate a wave of new enemies
@@ -90,8 +83,43 @@ public class GenerateEnemies : MonoBehaviour {
 	//A method to spawn an enemy
 	void SpawnEnemy(GameObject gameObject, float size)
 	{
-		//Instantiates a new enemy from the prefab gameObject arround the center of the screen proportionate to the scale of the player
-		GameObject clone = (GameObject) Instantiate(gameObject, new Vector3(Random.Range(-24f * player.transform.localScale.x, 24f  * player.transform.localScale.x), Random.Range(-13f  * player.transform.localScale.y,13f  * player.transform.localScale.y), 0), new Quaternion(0,0,0,0));
+
+		//A placeholder for the enemy that will be spawned
+		GameObject clone;
+
+		//The placeholder for the location to spawn
+		Vector3 location = new Vector3 ();
+
+		//And if statement to decide which side of the screen to spawn on
+		if (Random.Range(0f, 1f) > .5)
+		{
+			//Set the location for new enemy
+			location = new Vector3(37.5f,Random.Range(-20f, 20f),0);
+
+			//create the new enemy
+			clone = (GameObject) Instantiate(gameObject, location, new Quaternion());
+
+			//Set which direction the fish should move
+			clone.GetComponent<EnemyMovement>().moveLeft = true;
+
+			//Makes the enemy rotated so they face to the left
+			clone.transform.rotation = new Quaternion(0,0,0,1);
+		}
+		else
+		{
+			//Set the location for new enemy
+			location = new Vector3(-37.5f,Random.Range(-13f, 13f),0);
+			
+			//create the new enemy
+			clone = (GameObject) Instantiate(gameObject, location, new Quaternion());
+
+			//Set which direction the fish should move
+			clone.GetComponent<EnemyMovement>().moveLeft = false;
+
+			//Makes the enemy rotated so they face to the left
+			clone.transform.rotation = new Quaternion(0,180,0,1);
+		}
+
 		//Sets the new enemy GameObject to active so that it will move and be seen
 		clone.SetActive(true);
 		
@@ -101,12 +129,18 @@ public class GenerateEnemies : MonoBehaviour {
 		
 		//Gets the scale of the player
 		Vector3 baseScale = player.transform.localScale;
-		
+
+		if(baseScale.x < 0)
+		{
+			baseScale.x *= -1;
+		}
+
 		//Sets the scale of the new enemy to a proportion of the player based on the float size
 		clone.transform.localScale = new Vector3(baseScale.x * (size/3), baseScale.y * (size/3), baseScale.z * (size/3));
 		
 		//Adds the new enemy to the List for current enemies
 		currentClones.Add(clone);
+
 	}
 
 	//A method to get a List of random integers between ranges
@@ -124,21 +158,31 @@ public class GenerateEnemies : MonoBehaviour {
 	}
 
 	//A method to reduce the sizes of the enemies on screen
-	void ReduceSize()
+	public void ReduceSize()
 	{
+		//Checks to make sure all null enemies have been removed
+		removeNull();
+
+		//Goes through currentClones to reduce head and body size
 		foreach(GameObject obj in currentClones)
 		{
-			obj.GetComponent<Enemy>().bodySize -= 1;
-			obj.GetComponent<Enemy>().headSize -= 1;
+			if(obj.GetComponent<Enemy>().bodySize > 1)
+			{
+				obj.GetComponent<Enemy>().bodySize -= (1f/5);
+				obj.GetComponent<Enemy>().headSize -= (1f/5);
+			}
 		}
 	}
 
 	//A method to check if all of the size one and two fish have been eaten
 	bool CheckEatenAllSmall()
 	{
+		//Checks to make sure all null enemies have been removed
+		removeNull();
+
 		foreach(GameObject obj in currentClones)
 		{
-			if(obj.GetComponent<Enemy>().bodySize < 3)
+			if(obj != null && obj.GetComponent<Enemy>().bodySize < 3)
 			{
 				return false;
 			}
@@ -146,4 +190,19 @@ public class GenerateEnemies : MonoBehaviour {
 
 		return true;
 	}
+
+	//A method to remove all null enemies in currentClone
+	public void removeNull()
+	{
+		//A for loop to remove enemies from the List currentClones if it is destroyed
+		for(int i = 0; i < currentClones.Count; i++)
+		{
+			if(currentClones[i] == null)
+			{
+				currentClones.Remove(currentClones[i]);
+			}
+		}
+	}
+
+	//A method to wait
 }
