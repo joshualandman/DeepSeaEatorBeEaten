@@ -90,6 +90,9 @@ public class GenerateEnemies : MonoBehaviour {
 		//The placeholder for the location to spawn
 		Vector3 location = new Vector3 ();
 
+		//Gets the scale of the player
+		Vector3 baseScale = player.transform.localScale;
+
 		//And if statement to decide which side of the screen to spawn on
 		if (Random.Range(0f, 1f) > .5)
 		{
@@ -103,7 +106,12 @@ public class GenerateEnemies : MonoBehaviour {
 			clone.GetComponent<EnemyMovement>().moveLeft = true;
 
 			//Makes the enemy rotated so they face to the left
-			clone.transform.rotation = new Quaternion(0,0,0,1);
+			//clone.transform.rotation = new Quaternion(0,0,0,1);
+
+			if(baseScale.x < 0)
+			{
+				baseScale.x *= -1;
+			}
 		}
 		else
 		{
@@ -117,7 +125,12 @@ public class GenerateEnemies : MonoBehaviour {
 			clone.GetComponent<EnemyMovement>().moveLeft = false;
 
 			//Makes the enemy rotated so they face to the left
-			clone.transform.rotation = new Quaternion(0,180,0,1);
+			//clone.transform.rotation = new Quaternion(0,180,0,1);
+
+			if(baseScale.x > 0)
+			{
+				baseScale.x *= -1;
+			}
 		}
 
 		//Sets the new enemy GameObject to active so that it will move and be seen
@@ -126,14 +139,6 @@ public class GenerateEnemies : MonoBehaviour {
 		//Sets the headSize and body size to  equal the float size, which is the appropriate size for that particular enemy prefab
 		clone.GetComponent<Enemy>().headSize = size;
 		clone.GetComponent<Enemy>().bodySize = size;
-		
-		//Gets the scale of the player
-		Vector3 baseScale = player.transform.localScale;
-
-		if(baseScale.x < 0)
-		{
-			baseScale.x *= -1;
-		}
 
 		//Sets the scale of the new enemy to a proportion of the player based on the float size
 		clone.transform.localScale = new Vector3(baseScale.x * (size/3), baseScale.y * (size/3), baseScale.z * (size/3));
