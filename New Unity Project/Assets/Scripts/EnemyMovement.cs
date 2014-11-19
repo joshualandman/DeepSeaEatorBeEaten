@@ -66,7 +66,7 @@ public class EnemyMovement : MonoBehaviour {
 				//Destroy this Gameobject of it swims off screen
 				Destroy(transform.gameObject);
 				//remove this enemy from the list currentClones in GenerateEnemies
-				GameObject.Find ("Background").GetComponent<GenerateEnemies> ().removeNull ();
+				GameObject.Find ("Main Camera").GetComponent<GenerateEnemies> ().removeNull ();
 			}
 		}
 		else
@@ -76,7 +76,7 @@ public class EnemyMovement : MonoBehaviour {
 				//Destroy this Gameobject of it swims off screen
 				Destroy(transform.gameObject);
 				//remove this enemy from the list currentClones in GenerateEnemies
-				GameObject.Find ("Background").GetComponent<GenerateEnemies> ().removeNull ();
+				GameObject.Find ("Main Camera").GetComponent<GenerateEnemies> ().removeNull ();
 			}
 		}
 
