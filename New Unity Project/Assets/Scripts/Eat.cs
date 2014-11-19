@@ -63,7 +63,7 @@ public class Eat : MonoBehaviour {
 		//GameObject.Find ("Background").GetComponent<GenerateEnemies>().eatenCounter += enemyNum;
 
 		//Adds the enemy size to a counter to determine if all other enemies on the screen should have their size decreased
-		GameObject.Find ("Background").GetComponent<GenerateEnemies> ().ReduceSize ();
+		GameObject.Find ("Main Camera").GetComponent<GenerateEnemies> ().ReduceSize ();
 
 		//save player scale
 		Vector3 newScale = transform.parent.localScale;
