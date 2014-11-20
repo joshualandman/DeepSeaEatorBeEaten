@@ -3,9 +3,31 @@ using System.Collections;
 
 public class ScreenBound : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+
+	public float maxX;
+	public float minX;
+	public float maxY;
+	public float minY;
+
+	public GameObject background;
+
+	//Sets the min and max of x and y
+	void Start()
+	{
+		maxX = background.renderer.bounds.max.x - 20f;
+		minX = background.renderer.bounds.min.x + 20f;
+		maxY = background.renderer.bounds.max.y - .5f;
+		minY = background.renderer.bounds.min.y + .5f;
+
+	}
+
+	//Change the background
+	void ChangeBackground()
+	{
+		maxX = background.renderer.bounds.max.x - 20f;
+		minX = background.renderer.bounds.min.x + 20f;
+		maxY = background.renderer.bounds.max.y - .5f;
+		minY = background.renderer.bounds.min.y + .5f;
 	}
 	
 	// Update is called once per frame
@@ -13,27 +35,31 @@ public class ScreenBound : MonoBehaviour {
 	
 		Vector3 newPosition = transform.position;
 
-		if(newPosition.x > 27.5)
+		//Check to see if the player has gone to the horizontal limits of the background and stops him and set his vertical velocity to zero
+		if(newPosition.x > maxX)
 		{
-			newPosition.x = 27.5f;
+			newPosition.x = maxX;
 			GetComponent<Player>().velocity.x = 0;
 		}
-		else if(newPosition.x < -27.5)
+		else if(newPosition.x < minX)
 		{
-			newPosition.x = -27.5f;
+			newPosition.x = minX;
 			GetComponent<Player>().velocity.x = 0;
 		}
 
-		transform.position = newPosition;
-
-	}
-
-	void OnCollisionEnter2D(Collision2D other)
-	{
-		//Stop the player's velocity if they hit the top or bottom
-		if(other.gameObject.name == "sea-bed" || other.gameObject.name == "top-sea")
+		//Check to see if the player has gone to the vertical limits of the background and stops him and set his vertical velocity to zero
+		if(newPosition.y > maxY)
 		{
+			newPosition.y = maxY;
 			GetComponent<Player>().velocity.y = 0;
 		}
+		else if(newPosition.y < minY)
+		{
+			newPosition.y = minY;
+			GetComponent<Player>().velocity.y = 0;
+		}
+
+		//Set the players new position
+		transform.position = newPosition;
 	}
 }
