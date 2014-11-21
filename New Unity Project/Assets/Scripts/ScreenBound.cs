@@ -16,8 +16,8 @@ public class ScreenBound : MonoBehaviour {
 	{
 		maxX = background.renderer.bounds.max.x - 20f;
 		minX = background.renderer.bounds.min.x + 20f;
-		maxY = background.renderer.bounds.max.y - .5f;
-		minY = background.renderer.bounds.min.y + .5f;
+		maxY = background.renderer.bounds.max.y - 2.5f * transform.localScale.y;
+		minY = background.renderer.bounds.min.y + 2.5f * transform.localScale.y;
 
 	}
 
@@ -26,8 +26,8 @@ public class ScreenBound : MonoBehaviour {
 	{
 		maxX = background.renderer.bounds.max.x - 20f;
 		minX = background.renderer.bounds.min.x + 20f;
-		maxY = background.renderer.bounds.max.y - .5f;
-		minY = background.renderer.bounds.min.y + .5f;
+		maxY = background.renderer.bounds.max.y - 2.5f * transform.localScale.y;
+		minY = background.renderer.bounds.min.y + 2.5f * transform.localScale.y;
 	}
 	
 	// Update is called once per frame
