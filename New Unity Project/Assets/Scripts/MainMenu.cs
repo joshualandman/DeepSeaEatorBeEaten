@@ -4,15 +4,7 @@ using System.Collections;
 public class MainMenu : MonoBehaviour {
 
 	//control variables
-	bool startClick = false;
-	bool instructClick = false;
-	bool backClick = false;
 	bool main = true;
-
-	//button textures
-	public Texture2D startButton;
-	public Texture2D instructButton;
-	public Texture2D backButton;
 
 	//menue textures
 	public SpriteRenderer start;
@@ -27,64 +19,42 @@ public class MainMenu : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		//display main menu
-		if(main == true)
+		RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),Vector2.zero);
+
+		//screen size = 1276x735
+		if(hit.collider != null)
 		{
-			//start the game
-			if(startClick == true)
+			//main menu
+				//start the game
+			if(hit.collider.name == "Start") //hover
 			{
-				Application.LoadLevel("test");
+				if(Input.GetMouseButtonDown(0)) //click
+				{
+					Application.LoadLevel("test");
+				}
 			}
-			//switch view to instruction screen
-			else if(instructClick == true)
+				//show instructions
+			if(main == true && hit.collider.name == "Instructions") //hover
 			{
-				start.color = new Color(1f,1f,1f,0f);
-				instruct.color = new Color(1f,1f,1f,1f);
-				main = false;
-				//makes sure the buttons read as unclicked
-				instructClick = false;
-				startClick = false;
+				if(Input.GetMouseButtonDown(0)) //click
+				{
+					start.color = new Color(1f,1f,1f,0f);
+					instruct.color = new Color(1f,1f,1f,1f);
+					main = false;
+				}
 			}
-		}
-		//display instructions
-		else
-		{
-			if(backClick == true)
+			//instructions
+				//switch back to menu
+			if(main == false && hit.collider.name == "Back") //hover
 			{
-				start.color = new Color(1f,1f,1f,1f);
-				instruct.color = new Color(1f,1f,1f,0f);
-				main = true;
-				//makes sure the button reads as unclicked
-				backClick = false;
+				if(Input.GetMouseButtonDown(0)) //click
+				{
+					start.color = new Color(1f,1f,1f,1f);
+					instruct.color = new Color(1f,1f,1f,0f);
+					main = true;
+				}
 			}
+
 		}
 	}//ends:Update
-
-	void OnGUI ()
-	{
-		Debug.Log("width: "+ Screen.width+"height: "+Screen.width);
-		//Main menu GUI
-		if(main == true)
-		{
-			//if the player wants to start the game
-			if(GUI.Button(new Rect(152f,522f,348f,90f),startButton))
-			{
-				startClick = true;
-			}
-			//if the player wants to see the instructions
-			else if(GUI.Button(new Rect(522f,522f,348f,90f),instructButton))
-			{
-				instructClick = true;
-			}
-		}
-		//Instructions GUI
-		else
-		{
-			//if the player wants to leave the instructions menu
-			if(GUI.Button(new Rect(650f,642.5f,179f,100f),backButton))
-			{
-				backClick = true;
-			}
-		}
-	}//ends: OnGUI
 }
