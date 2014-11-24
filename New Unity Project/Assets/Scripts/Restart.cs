@@ -2,15 +2,22 @@
 using System.Collections;
 
 public class Restart : MonoBehaviour {
-	//button texture
-	public Texture2D endButton;
-
-	void OnGUI()
+	void Update()
 	{
-		//restart the game
-		if(GUI.Button(new Rect(220,427,414f,142f),endButton))
+		RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),Vector2.zero);
+
+		//if the mouse is over a button
+		if(hit.collider != null)
 		{
-			Application.LoadLevel("testMenu");
+			//death screen
+				//restart button
+			if(hit.collider.name == "Restart")//hover
+			{
+				if(Input.GetMouseButtonDown(0))//click
+				{
+					Application.LoadLevel("testMenu");
+				}
+			}
 		}
 	}
 }

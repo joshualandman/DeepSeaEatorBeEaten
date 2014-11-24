@@ -17,11 +17,12 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
 		RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),Vector2.zero);
 
 		//screen size = 1276x735
+		//if the mouse is over a button
 		if(hit.collider != null)
 		{
 			//main menu
