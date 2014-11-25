@@ -32,6 +32,8 @@ public class EnemyMovement : MonoBehaviour {
 		acceleration = new Vector3(0,0);
 
 		maxSpeed = 0.1f;
+
+		player = GameObject.Find ("Player");
 	}
 	
 	// Update is called once per frame
@@ -60,8 +62,8 @@ public class EnemyMovement : MonoBehaviour {
 		//Move the enemy
 		transform.position += velocity;
 
-		//An if statement to tell when to destroy an enemy whose swam off screen
-		if(transform.position.x < -38 || transform.position.x > 38)
+		//An if statement to tell when to destroy an enemy whose swam off the background
+		if(transform.position.x < GameObject.Find("Main Camera").GetComponent<GenerateEnemies>().background.renderer.bounds.min.x || transform.position.x > GameObject.Find("Main Camera").GetComponent<GenerateEnemies>().background.renderer.bounds.max.x)
 		{
 			//Destroy this Gameobject of it swims off screen
 			Destroy(transform.gameObject);

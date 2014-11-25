@@ -19,6 +19,8 @@ public class Eat : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other)
 	{
 
+		Debug.Log (other.gameObject.name);
+
 		//If the player is colliding into something other than the top-sea or sea-bed gameobject then continue
 		if(other.gameObject.name != "top-sea" && other.gameObject.name != "sea-bed")
 		{
@@ -50,6 +52,12 @@ public class Eat : MonoBehaviour {
 					eatEnemy(target.gameObject);
 					Destroy(other.gameObject);
 				}*/
+			}
+
+			if(other.gameObject.name == "copepod(Clone)")
+			{
+				eatEnemy(other.gameObject);
+				Destroy(other.gameObject);
 			}
 		}
 	}

@@ -10,6 +10,9 @@ public class ScreenBound : MonoBehaviour {
 	public float minY;
 
 	public GameObject background;
+	public GameObject background2;
+
+	bool backgroundNew;
 
 	//Sets the min and max of x and y
 	void Start()
@@ -18,6 +21,8 @@ public class ScreenBound : MonoBehaviour {
 		minX = background.renderer.bounds.min.x + 20f;
 		maxY = background.renderer.bounds.max.y - 2.5f * transform.localScale.y;
 		minY = background.renderer.bounds.min.y + 2.5f * transform.localScale.y;
+
+		backgroundNew = false;
 
 	}
 
@@ -61,5 +66,22 @@ public class ScreenBound : MonoBehaviour {
 
 		//Set the players new position
 		transform.position = newPosition;
+
+
+		if(GameObject.Find("Player").GetComponent<Player>().score == 25 && !backgroundNew)
+		{
+			NewBackground();
+			ChangeBackground();
+			backgroundNew = true;
+		}
+	}
+
+
+	void NewBackground()
+	{
+		background.transform.position += new Vector3 (0, 0, 3);
+		GameObject.Find ("top-sea").transform.position += new Vector3 (0, 0, 3);
+		background = background2;
+		GameObject.Find ("Main Camera").GetComponent<GenerateEnemies> ().background = background;
 	}
 }

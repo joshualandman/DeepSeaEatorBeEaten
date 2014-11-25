@@ -11,6 +11,8 @@ public class GenerateEnemies : MonoBehaviour {
 	public GameObject newEnemy2;
 	public GameObject newEnemy3;
 	public GameObject newEnemy4;
+
+	public GameObject background;
 	
 	//Lists for all enemy prefabs and a List for the different sizes that enemies can be generated as
 	List<GameObject> objects = new List<GameObject>();
@@ -21,6 +23,8 @@ public class GenerateEnemies : MonoBehaviour {
 
 	//A counter to determine if all other enemies should have their sizes reduced
 	public float eatenCounter;
+
+	public float timeCount;
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +41,10 @@ public class GenerateEnemies : MonoBehaviour {
 		sizes.Add(4f);
 
 		eatenCounter = 0;
+
+		timeCount = 0;
+
+		background = player.GetComponent<ScreenBound> ().background;
 	}
 	
 	// Update is called once per frame
@@ -47,10 +55,30 @@ public class GenerateEnemies : MonoBehaviour {
 		removeNull();
 
 		//An if statement to tell when to spawn more enemies
-		if(CheckEatenAllSmall())
+		//if(CheckEatenAllSmall())
+		//{
+		//	SpawnWave();
+		//}
+
+		if (timeCount == 80)
 		{
-			SpawnWave();
+			//An if statement to make spawning a fish between size 1 and 3 happen more often
+			if(Random.Range(0,1f) < .8f)
+			{
+				int index = Random.Range (0, 2);
+				
+				SpawnEnemy (objects [index], sizes [index]);
+			}
+			else //Spawn a size 4 fish at a reduced rate
+			{
+				SpawnEnemy (objects[3], sizes[3]);
+			}
+			
+		
+			timeCount = 0;
 		}
+
+		timeCount++;
 
 		//An if statement to see if enemies should have their sizes decreased
 		//if(eatenCounter >= 10)
@@ -97,7 +125,7 @@ public class GenerateEnemies : MonoBehaviour {
 		if (Random.Range(0f, 1f) > .5)
 		{
 			//Set the location for new enemy
-			location = new Vector3(37.5f,Random.Range(-20f, 20f),0);
+			location = new Vector3(background.renderer.bounds.max.x,Random.Range(background.renderer.bounds.min.y, background.renderer.bounds.max.y),0);
 
 			//create the new enemy
 			clone = (GameObject) Instantiate(gameObject, location, new Quaternion());
@@ -116,7 +144,7 @@ public class GenerateEnemies : MonoBehaviour {
 		else
 		{
 			//Set the location for new enemy
-			location = new Vector3(-37.5f,Random.Range(-13f, 13f),0);
+			location = new Vector3(background.renderer.bounds.min.x,Random.Range(background.renderer.bounds.min.y, background.renderer.bounds.max.y),0);
 			
 			//create the new enemy
 			clone = (GameObject) Instantiate(gameObject, location, new Quaternion());

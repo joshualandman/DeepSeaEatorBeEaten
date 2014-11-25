@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
 	public float drag;
 
 	public float maxYVelocity;
+	public float maxXVelocity;
 
 	//A float to hold the score the player has earned
 	public float score;
@@ -29,7 +30,8 @@ public class Player : MonoBehaviour {
 		acceleration = new Vector3((.008f * transform.localScale.x),(.008f * transform.localScale.y),0f);
 		drag = .0001f;
 
-		maxYVelocity = -.2f;
+		maxYVelocity = .2f;
+		maxXVelocity = .3f;
 	}
 
 	void FixedUpdate()
@@ -58,13 +60,25 @@ public class Player : MonoBehaviour {
 		if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
 			//Increase velocity to move to the left
-			velocity.x -= acceleration.x; 
+			velocity.x -= acceleration.x;
+			
+			//Keep the horizontal velocity to a maximum			
+			if(velocity.x < -maxXVelocity)
+			{
+				velocity.x = -maxXVelocity;
+			}
 			
 		}
 		if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
 			//Increase velocity to move to the right
 			velocity.x += acceleration.x;
+			
+			//Keep the horizontal velocity to a maximum			
+			if(velocity.x > maxXVelocity)
+			{
+				velocity.x = maxXVelocity;
+			}
 		}
 		//Move vertically
 		if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -72,13 +86,21 @@ public class Player : MonoBehaviour {
 			//Increase the velocity to move up
 			velocity.y += acceleration.y; 
 			
+			//Keep the vertical velocity to a maximum			
+			if(velocity.y > maxYVelocity)
+			{
+				velocity.y = maxYVelocity;
+			}
 		}
 		if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
 		{
-			if(velocity.y > maxYVelocity)
+			//Increase the velocity to move down
+			velocity.y -= acceleration.y; 
+			
+			//Keep the vertical velocity to a maximum			
+			if(velocity.y < -maxYVelocity)
 			{
-				//Increase the velocity to move down
-				velocity.y -= acceleration.y;
+				velocity.y = -maxYVelocity;
 			}
 		}
 		
