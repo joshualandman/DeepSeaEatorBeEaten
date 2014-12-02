@@ -33,7 +33,7 @@ public class EnemyEat : MonoBehaviour {
 				//Debug.Log("GameObject: " + other.gameObject.name + "   Transform: " + target);
 
 				//Checks if the colliding collider is that of the body
-				if(target.transform.name == "body")
+				if(target.transform.name == "Body")
 				{
 					//if enemy is smaller than player, get eaten
 					if(headSize > playerNum)

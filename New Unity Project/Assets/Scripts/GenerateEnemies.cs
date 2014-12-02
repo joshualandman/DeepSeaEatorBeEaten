@@ -169,7 +169,7 @@ public class GenerateEnemies : MonoBehaviour {
 		clone.GetComponent<Enemy>().bodySize = size;
 
 		//Sets the scale of the new enemy to a proportion of the player based on the float size
-		clone.transform.localScale = new Vector3(baseScale.x * (size/3), baseScale.y * (size/3), baseScale.z * (size/3));
+		clone.transform.localScale = new Vector3(baseScale.x * (size/15), baseScale.y * (size/15), baseScale.z * (size/15));
 		
 		//Adds the new enemy to the List for current enemies
 		currentClones.Add(clone);

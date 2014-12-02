@@ -27,11 +27,11 @@ public class Player : MonoBehaviour {
 
 		//Set the default value of Velocity and the permanent values of acceleration and drag
 		velocity = new Vector3(0f,0f,0f);
-		acceleration = new Vector3((.008f * transform.localScale.x),(.008f * transform.localScale.y),0f);
-		drag = .0001f;
+		acceleration = new Vector3((.002f * transform.localScale.x),(.001f * transform.localScale.y),0f);
+		drag = .00001f;
 
-		maxYVelocity = .2f;
-		maxXVelocity = .3f;
+		maxYVelocity = .5f;
+		maxXVelocity = .1f;
 	}
 
 	void FixedUpdate()
@@ -59,48 +59,35 @@ public class Player : MonoBehaviour {
 		//Move horizontally
 		if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
-			//Increase velocity to move to the left
-			velocity.x -= acceleration.x;
-			
-			//Keep the horizontal velocity to a maximum			
-			if(velocity.x < -maxXVelocity)
+			if(velocity.x >= -maxXVelocity)
 			{
-				velocity.x = -maxXVelocity;
+				//Increase velocity to move to the left
+				velocity.x -= acceleration.x;
 			}
-			
 		}
 		if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
-			//Increase velocity to move to the right
-			velocity.x += acceleration.x;
-			
-			//Keep the horizontal velocity to a maximum			
-			if(velocity.x > maxXVelocity)
+			if(velocity.x <= maxXVelocity)
 			{
-				velocity.x = maxXVelocity;
+				//Increase velocity to move to the right
+				velocity.x += acceleration.x;
 			}
 		}
 		//Move vertically
 		if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
 		{
-			//Increase the velocity to move up
-			velocity.y += acceleration.y; 
-			
-			//Keep the vertical velocity to a maximum			
-			if(velocity.y > maxYVelocity)
+			if(velocity.y <= maxYVelocity)
 			{
-				velocity.y = maxYVelocity;
+				//Increase the velocity to move up
+				velocity.y += acceleration.y; 
 			}
 		}
 		if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
 		{
-			//Increase the velocity to move down
-			velocity.y -= acceleration.y; 
-			
-			//Keep the vertical velocity to a maximum			
-			if(velocity.y < -maxYVelocity)
+			if(velocity.y >= -maxYVelocity)
 			{
-				velocity.y = -maxYVelocity;
+				//Increase the velocity to move down
+				velocity.y -= acceleration.y; 
 			}
 		}
 		
