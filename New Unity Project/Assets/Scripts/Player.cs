@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
 	//A float to hold the score the player has earned
 	public float score;
 
-	bool facingRight = true;
+	bool facingRight = false;
 
 	// Use this for initialization
 	void Start () 
