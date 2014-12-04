@@ -15,7 +15,7 @@ public class Restart : MonoBehaviour {
 			{
 				if(Input.GetMouseButtonDown(0))//click
 				{
-					Application.LoadLevel("testMenu");
+					Application.LoadLevel("Menu");
 				}
 			}
 		}

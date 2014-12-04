@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class EnemyEat : MonoBehaviour {
-
 	GameObject player;
 	float playerNum = 0.0f;
 	float headSize = 0.0f;
@@ -40,9 +39,7 @@ public class EnemyEat : MonoBehaviour {
 					{
 						//Kill the Player
 						//Debug.Log("You Died!!!");
-
 						Application.LoadLevel("end");
-
 						//Destroy(player);
 					}
 				}
@@ -58,10 +55,7 @@ public class EnemyEat : MonoBehaviour {
 				{
 					//if enemy is smaller than player, get eaten
 					if(other.gameObject.GetComponent<Enemy>().headSize < headSize)
-					{
-
-						Destroy(other.gameObject);
-					}
+					{ Destroy(other.gameObject); }
 				}
 			}
 			

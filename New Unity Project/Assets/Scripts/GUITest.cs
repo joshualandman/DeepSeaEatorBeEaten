@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class GUITest : MonoBehaviour {
-
 	//insert player to use
 	public Player player;
 
@@ -13,9 +12,7 @@ public class GUITest : MonoBehaviour {
 
 		if(player.score >= 40)
 		{
-		
 			GUI.Box ( new Rect ((Screen.width/2) - 100, (Screen.height/2) + 45, 200, 90), "You Won!"); // display player
-		
 		}
 	}
 }

@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-
 	public float bodySize;
 	public float headSize;
 
@@ -37,10 +36,10 @@ public class Player : MonoBehaviour {
 	void FixedUpdate()
 	{
 		//Make the playe rmove
-		Swimming ();
+		Swimming();
 
 		//Get which direction the player wants to move
-		float move = Input.GetAxis ("Horizontal");
+		float move = Input.GetAxis("Horizontal");
 
 		//Flips the player fish based on the direction the player wants to move
 		if(move < 0 && !facingRight)
@@ -99,24 +98,14 @@ public class Player : MonoBehaviour {
 		
 		//Applies a drag for the horizontal movement
 		if(velocity.x > 0)
-		{
-			velocity.x -= drag;
-		}
+		{ velocity.x -= drag; }
 		else if(velocity.x < 0)
-		{
-			velocity.x += drag;
-		}
+		{ velocity.x += drag; }
 		
 		//Applies a drag for the vertical movement
 		if(velocity.y > 0)
-		{
-			velocity.y -= drag;
-		}
+		{ velocity.y -= drag; }
 		else if(velocity.y < 0)
-		{
-			velocity.y += drag;
-		}
+		{ velocity.y += drag; }
 	}
-
-
 }

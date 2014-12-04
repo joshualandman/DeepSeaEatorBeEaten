@@ -27,7 +27,7 @@ public class GenerateEnemies : MonoBehaviour {
 	public float timeCount;
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 		//Adds all of the enemies prefabs to the List for prefabs
 		objects.Add(newEnemy1);
 		objects.Add(newEnemy2);
@@ -49,9 +49,6 @@ public class GenerateEnemies : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-		
-
-
 		removeNull();
 
 		if (timeCount == 80)
@@ -67,8 +64,7 @@ public class GenerateEnemies : MonoBehaviour {
 			{
 				SpawnEnemy (objects[3], sizes[3]);
 			}
-			
-		
+
 			timeCount = 0;
 		}
 
@@ -78,7 +74,6 @@ public class GenerateEnemies : MonoBehaviour {
 	//A method to spawn an enemy
 	void SpawnEnemy(GameObject gameObject, float size)
 	{
-
 		//A placeholder for the enemy that will be spawned
 		GameObject clone;
 
@@ -106,9 +101,7 @@ public class GenerateEnemies : MonoBehaviour {
 			//clone.transform.rotation = new Quaternion(0,0,0,1);
 
 			if(baseScale.x < 0f)
-			{
-				baseScale.x *= -1f;
-			}
+			{ baseScale.x *= -1f; }
 		}
 		else
 		{
@@ -127,9 +120,7 @@ public class GenerateEnemies : MonoBehaviour {
 			//clone.transform.rotation = new Quaternion(0,180,0,1);
 
 			if(baseScale.x > 0f)
-			{
-				baseScale.x *= -1f;
-			}
+			{ baseScale.x *= -1f; }
 		}
 
 		//Sets the new enemy GameObject to active so that it will move and be seen
@@ -144,7 +135,6 @@ public class GenerateEnemies : MonoBehaviour {
 		
 		//Adds the new enemy to the List for current enemies
 		currentClones.Add(clone);
-
 	}
 
 	//A method to reduce the sizes of the enemies on screen

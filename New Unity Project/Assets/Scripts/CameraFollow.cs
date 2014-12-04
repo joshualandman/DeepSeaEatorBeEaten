@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
-
 	//insert object to follow
 	public Transform followObject;
 
@@ -13,7 +12,6 @@ public class CameraFollow : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
 		//set a position slightly behing the object
 		Vector3 pos = new Vector3
 			(followObject.transform.position.x,

@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
-
 	//declare size numbers
 	public float bodySize;
 	public float headSize;
@@ -11,6 +10,4 @@ public class Enemy : MonoBehaviour {
 	{
 
 	}
-
-
 }

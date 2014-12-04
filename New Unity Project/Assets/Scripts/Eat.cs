@@ -2,23 +2,18 @@
 using System.Collections;
 
 public class Eat : MonoBehaviour {
-
 	//declare player and enemy and their size numbers
-
 	float playerNum = 0.0f;
 	float enemyNum = 0.0f;
 
 	void Start()
 	{
-
 		//set player equal to player and set his size
 		playerNum = transform.parent.GetComponent<Player>().bodySize;
-
 	}
 	
 	void OnCollisionEnter2D(Collision2D other)
 	{
-
 		Debug.Log (other.gameObject.name);
 
 		//If the player is colliding into something other than the top-sea or sea-bed gameobject then continue
@@ -38,7 +33,6 @@ public class Eat : MonoBehaviour {
 					//if enemy is smaller than player, get eaten
 					if(enemyNum < playerNum)
 					{
-
 						//Debug.Log("Enemy: " + enemyNum + " Player: " + playerNum);
 						eatEnemy(target.gameObject);
 						Destroy(other.gameObject);
@@ -60,7 +54,7 @@ public class Eat : MonoBehaviour {
 		transform.parent.gameObject.GetComponent<Player>().score += (int)enemyNum;
 
 		//Adds the enemy size to a counter to determine if all other enemies on the screen should have their size decreased
-		GameObject.Find ("Main Camera").GetComponent<GenerateEnemies> ().ReduceSize ();
+		GameObject.Find ("Main Camera").GetComponent<GenerateEnemies>().ReduceSize ();
 
 		//save player scale
 		Vector3 newScale = transform.parent.localScale;

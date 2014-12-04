@@ -10,7 +10,6 @@ public class ScreenWrapping : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 		Vector3 newPosition = transform.position;
 		
 		if(newPosition.x > 20)
@@ -23,6 +22,5 @@ public class ScreenWrapping : MonoBehaviour {
 		}
 		
 		transform.position = newPosition;
-	
 	}
 }

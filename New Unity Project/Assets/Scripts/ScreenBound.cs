@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class ScreenBound : MonoBehaviour {
-
-
 	public float maxX;
 	public float minX;
 	public float maxY;
@@ -24,7 +22,6 @@ public class ScreenBound : MonoBehaviour {
 		minY = background.renderer.bounds.min.y + 2.5f * transform.localScale.y;
 
 		backgroundNew = false;
-
 	}
 
 	//Change the background
@@ -38,7 +35,6 @@ public class ScreenBound : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
 		Vector3 newPosition = transform.position;
 
 		//Check to see if the player has gone to the horizontal limits of the background and stops him and set his vertical velocity to zero
@@ -67,8 +63,7 @@ public class ScreenBound : MonoBehaviour {
 
 		//Set the players new position
 		transform.position = newPosition;
-
-
+		
 		if(GameObject.Find("Player").GetComponent<Player>().score == 25 && !backgroundNew)
 		{
 			NewBackground();
@@ -77,13 +72,13 @@ public class ScreenBound : MonoBehaviour {
 		}
 	}
 
-
 	void NewBackground()
 	{
 		background.transform.position += new Vector3(0, 0, 3);
 		darknessOverlay.transform.position += new Vector3(0, 0, 3);
-		GameObject.Find ("top-sea").transform.position += new Vector3 (0, 0, 3);
+		GameObject.Find("top-sea").transform.position += new Vector3 (0, 0, 3);
 		background = background2;
-		GameObject.Find ("Main Camera").GetComponent<GenerateEnemies> ().background = background;
+		GameObject.Find("Main Camera").GetComponent<GenerateEnemies>().background = background;
+		GameObject.Find("Main Camera").GetComponent<GenerateBubbles>().background = background;
 	}
 }

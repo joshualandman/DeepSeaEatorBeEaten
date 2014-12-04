@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class EnemyMovement : MonoBehaviour {
-	
 	public Vector3 velocity;
 	public Vector3 acceleration;
 	float maxSpeed;
@@ -40,7 +39,6 @@ public class EnemyMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-
 		Swim ();
 
 		if(GetComponent<Enemy>().headSize < player.GetComponent<Player>().headSize)
@@ -76,13 +74,11 @@ public class EnemyMovement : MonoBehaviour {
 				scale.x *= -1f;
 				transform.localScale = scale;
 			}
-
 		}
 	}
 
 	void Swim()
 	{
-		//
 		velocity += acceleration;
 
 		//Move the enemy
@@ -108,10 +104,8 @@ public class EnemyMovement : MonoBehaviour {
 
 		float dist = Mathf.Sqrt (diffX * diffX + diffY * diffY);
 
-
 		//Set the minimum distance to the player when to start seeking
 		minDist = player.transform.localScale.y * 5;
-		
 
 		//An if statement to see when to seek
 		if( dist < minDist)
@@ -133,8 +127,7 @@ public class EnemyMovement : MonoBehaviour {
 
 		//Set the minimum distance to the player when to start seeking
 		minDist = player.transform.localScale.y * 5;
-		
-		
+
 		//An if statement to see when to seek
 		if( dist < minDist)
 		{

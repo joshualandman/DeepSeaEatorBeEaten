@@ -10,10 +10,17 @@ public class MainMenu : MonoBehaviour {
 	public SpriteRenderer start;
 	public SpriteRenderer instruct;
 
+	//enemy sprites
+	public SpriteRenderer fangtooth;
+	public SpriteRenderer copepod;
+
 	//sets instructions as invisible to start
 	void Awake()
 	{
+		//instructions and enemy sprites start out invisible
 		instruct.color = new Color(1f,1f,1f,0f);
+		fangtooth.color = new Color(1f,1f,1f,0f);
+		copepod.color = new Color(1f,1f,1f,0f);
 	}
 
 	// Update is called once per frame
@@ -41,6 +48,8 @@ public class MainMenu : MonoBehaviour {
 				{
 					start.color = new Color(1f,1f,1f,0f);
 					instruct.color = new Color(1f,1f,1f,1f);
+					fangtooth.color = new Color(1f,1f,1f,1f);
+					copepod.color = new Color(1f,1f,1f,1f);
 					main = false;
 				}
 			}
@@ -52,10 +61,11 @@ public class MainMenu : MonoBehaviour {
 				{
 					start.color = new Color(1f,1f,1f,1f);
 					instruct.color = new Color(1f,1f,1f,0f);
+					fangtooth.color = new Color(1f,1f,1f,0f);
+					copepod.color = new Color(1f,1f,1f,0f);
 					main = true;
 				}
 			}
-
 		}
 	}//ends:Update
 }
