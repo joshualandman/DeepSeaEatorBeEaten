@@ -44,14 +44,6 @@ public class Eat : MonoBehaviour {
 						Destroy(other.gameObject);
 					}
 				}
-
-				/*if(enemyHeadNum < playerHeadNum)
-				{
-					
-					Debug.Log("Enemy: " + enemyHeadNum + " Player: " + playerHeadNum);
-					eatEnemy(target.gameObject);
-					Destroy(other.gameObject);
-				}*/
 			}
 
 			if(other.gameObject.name == "copepod(Clone)")
@@ -66,9 +58,6 @@ public class Eat : MonoBehaviour {
 	{
 		//Adds the enemy size to the player's score
 		transform.parent.gameObject.GetComponent<Player>().score += (int)enemyNum;
-
-		//Adds the enemy size to a counter to determine if all other enemies on the screen should have their size decreased
-		//GameObject.Find ("Background").GetComponent<GenerateEnemies>().eatenCounter += enemyNum;
 
 		//Adds the enemy size to a counter to determine if all other enemies on the screen should have their size decreased
 		GameObject.Find ("Main Camera").GetComponent<GenerateEnemies> ().ReduceSize ();
@@ -88,6 +77,10 @@ public class Eat : MonoBehaviour {
 
 		//Increase the acceleration of the player as he grows
 		GameObject.Find("Player").GetComponent<Player>().acceleration *=  ((30f + enemyNum) / 30f);
+
+		//Increase max speed
+		GameObject.Find("Player").GetComponent<Player>().maxXVelocity *= ((30f + enemyNum) / 30f);
+		GameObject.Find("Player").GetComponent<Player>().maxYVelocity *= ((30f + enemyNum) / 30f);
 
 		//Increase the acceleration of the player as he grows
 		GameObject.Find("Player").GetComponent<Player>().drag *=  ((30f + enemyNum) / 30f);

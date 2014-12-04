@@ -27,19 +27,22 @@ public class Player : MonoBehaviour {
 
 		//Set the default value of Velocity and the permanent values of acceleration and drag
 		velocity = new Vector3(0f,0f,0f);
-		acceleration = new Vector3((.002f * transform.localScale.x),(.001f * transform.localScale.y),0f);
-		drag = .00001f;
+		acceleration = new Vector3((.002f * transform.localScale.x),(.002f * transform.localScale.y),0f);
+		drag = .0005f;
 
-		maxYVelocity = .5f;
-		maxXVelocity = .1f;
+		maxYVelocity = .06f;
+		maxXVelocity = .06f;
 	}
 
 	void FixedUpdate()
 	{
+		//Make the playe rmove
 		Swimming ();
 
+		//Get which direction the player wants to move
 		float move = Input.GetAxis ("Horizontal");
 
+		//Flips the player fish based on the direction the player wants to move
 		if(move < 0 && !facingRight)
 			Flip();
 		else if(move > 0 && facingRight)

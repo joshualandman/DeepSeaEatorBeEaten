@@ -54,12 +54,6 @@ public class GenerateEnemies : MonoBehaviour {
 
 		removeNull();
 
-		//An if statement to tell when to spawn more enemies
-		//if(CheckEatenAllSmall())
-		//{
-		//	SpawnWave();
-		//}
-
 		if (timeCount == 80)
 		{
 			//An if statement to make spawning a fish between size 1 and 3 happen more often
@@ -79,33 +73,6 @@ public class GenerateEnemies : MonoBehaviour {
 		}
 
 		timeCount++;
-
-		//An if statement to see if enemies should have their sizes decreased
-		//if(eatenCounter >= 10)
-		//{
-		//	ReduceSize();
-		//	eatenCounter -= 10;
-		//}
-	}
-	
-	//A method to generate a wave of new enemies
-	void SpawnWave()
-	{
-		//A List for amount of enemies that should be spawned per size
-		List<int> numberOf =  new List<int>();
-		//Call ChooseHowMany which populates the List with random numbers
-		numberOf = ChooseHowMany();
-		
-		//A for loop that goes through the List for prefabs
-		for(int i = 0; i < objects.Count; i++)
-		{
-			//A for loop that instantiates a new enemy x number of times, where x = numberOf[i]
-			for(int j = 0; j < numberOf[i]; j++)
-			{
-				//Calls the method SpawnEnemy
-				SpawnEnemy(objects[i], sizes[i]);
-			}
-		}
 	}
 	
 	//A method to spawn an enemy
@@ -122,10 +89,12 @@ public class GenerateEnemies : MonoBehaviour {
 		Vector3 baseScale = player.transform.localScale;
 
 		//And if statement to decide which side of the screen to spawn on
-		if (Random.Range(0f, 1f) > .5)
+		if (Random.Range(0f, 1f) > .5f)
 		{
+			Debug.Log ("Start Right");
+
 			//Set the location for new enemy
-			location = new Vector3(background.renderer.bounds.max.x,Random.Range(background.renderer.bounds.min.y, background.renderer.bounds.max.y),0);
+			location = new Vector3(background.renderer.bounds.max.x,Random.Range(background.renderer.bounds.min.y + 3, background.renderer.bounds.max.y - 3),0);
 
 			//create the new enemy
 			clone = (GameObject) Instantiate(gameObject, location, new Quaternion());
@@ -136,15 +105,17 @@ public class GenerateEnemies : MonoBehaviour {
 			//Makes the enemy rotated so they face to the left
 			//clone.transform.rotation = new Quaternion(0,0,0,1);
 
-			if(baseScale.x < 0)
+			if(baseScale.x < 0f)
 			{
-				baseScale.x *= -1;
+				baseScale.x *= -1f;
 			}
 		}
 		else
 		{
+			Debug.Log ("Start Left");
+
 			//Set the location for new enemy
-			location = new Vector3(background.renderer.bounds.min.x,Random.Range(background.renderer.bounds.min.y, background.renderer.bounds.max.y),0);
+			location = new Vector3(background.renderer.bounds.min.x + gameObject.transform.localScale.x,Random.Range(background.renderer.bounds.min.y + 3, background.renderer.bounds.max.y - 3),0);
 			
 			//create the new enemy
 			clone = (GameObject) Instantiate(gameObject, location, new Quaternion());
@@ -155,9 +126,9 @@ public class GenerateEnemies : MonoBehaviour {
 			//Makes the enemy rotated so they face to the left
 			//clone.transform.rotation = new Quaternion(0,180,0,1);
 
-			if(baseScale.x > 0)
+			if(baseScale.x > 0f)
 			{
-				baseScale.x *= -1;
+				baseScale.x *= -1f;
 			}
 		}
 
@@ -174,20 +145,6 @@ public class GenerateEnemies : MonoBehaviour {
 		//Adds the new enemy to the List for current enemies
 		currentClones.Add(clone);
 
-	}
-
-	//A method to get a List of random integers between ranges
-	List<int> ChooseHowMany()
-	{
-		//A List of integers
-		List<int> numberOf =  new List<int>();
-		//Adds four random numbers to the List
-		numberOf.Add (Random.Range (4, 8));
-		numberOf.Add (Random.Range (3, 5));
-		numberOf.Add (Random.Range (1, 3));
-		numberOf.Add (Random.Range (1, 2));
-		//Return the List
-		return numberOf;
 	}
 
 	//A method to reduce the sizes of the enemies on screen
@@ -207,23 +164,6 @@ public class GenerateEnemies : MonoBehaviour {
 		}
 	}
 
-	//A method to check if all of the size one and two fish have been eaten
-	bool CheckEatenAllSmall()
-	{
-		//Checks to make sure all null enemies have been removed
-		removeNull();
-
-		foreach(GameObject obj in currentClones)
-		{
-			if(obj != null && obj.GetComponent<Enemy>().bodySize < 3)
-			{
-				return false;
-			}
-		}
-
-		return true;
-	}
-
 	//A method to remove all null enemies in currentClone
 	public void removeNull()
 	{
@@ -236,6 +176,4 @@ public class GenerateEnemies : MonoBehaviour {
 			}
 		}
 	}
-
-	//A method to wait
 }

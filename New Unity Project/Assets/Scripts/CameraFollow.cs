@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour {
 
 	void Start()
 	{
-		camera.orthographicSize = 20f * followObject.localScale.x;
+		camera.orthographicSize = 5f * followObject.localScale.x;
 	}
 
 	// Update is called once per frame

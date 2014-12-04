@@ -48,5 +48,27 @@ public class EnemyEat : MonoBehaviour {
 				}
 			}
 		}
+		else if(other.transform.name.Contains("Clone")) //Eat other fish if they are smaller (Fix for when two fish collide and neither can move)
+		{
+			//loop through the transforms in other
+			foreach(Transform target in other.transform)
+			{
+				//find the child that we want
+				if(target.gameObject.name == "body")
+				{
+					//if enemy is smaller than player, get eaten
+					if(other.gameObject.GetComponent<Enemy>().headSize < headSize)
+					{
+
+						Destroy(other.gameObject);
+					}
+				}
+			}
+			
+			if(other.gameObject.name == "copepod(Clone)")
+			{
+				Destroy(other.gameObject);
+			}
+		}
 	}
 }
