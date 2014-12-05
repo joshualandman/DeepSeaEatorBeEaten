@@ -33,6 +33,7 @@ public class Eat : MonoBehaviour {
 					//if enemy is smaller than player, get eaten
 					if(enemyNum < playerNum)
 					{
+						this.GetComponentInParent<Animator>().SetBool("hasEaten", true);
 						//Debug.Log("Enemy: " + enemyNum + " Player: " + playerNum);
 						eatEnemy(target.gameObject);
 						Destroy(other.gameObject);

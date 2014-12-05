@@ -16,6 +16,8 @@ public class Player : MonoBehaviour {
 	//A float to hold the score the player has earned
 	public float score;
 
+	public Animator anim;
+
 	bool facingRight = false;
 
 	// Use this for initialization
@@ -23,6 +25,9 @@ public class Player : MonoBehaviour {
 	{
 		//Set score to zero
 		score = 0.0f;
+
+		//Set animator component
+		anim = GameObject.Find("Player").GetComponent<Animator>();
 
 		//Set the default value of Velocity and the permanent values of acceleration and drag
 		velocity = new Vector3(0f,0f,0f);
@@ -96,6 +101,14 @@ public class Player : MonoBehaviour {
 				velocity.y -= acceleration.y; 
 			}
 		}
+		//Set boolean for animation
+		if(velocity.sqrMagnitude > (acceleration*2).sqrMagnitude){
+			anim.SetBool("swimming", true);
+		}
+		else{
+			anim.SetBool("swimming", false);
+		}
+
 		
 		//Move based on current velocity
 		transform.position += velocity;
@@ -112,4 +125,12 @@ public class Player : MonoBehaviour {
 		else if(velocity.y < 0)
 		{ velocity.y += drag; }
 	}
+
+	//Method to end bite animation, called through the animator component
+	public void endBiteAnim(){
+		anim.SetBool("hasEaten", false);
+	}
+
+
+
 }
