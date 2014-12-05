@@ -21,18 +21,11 @@ public class ScreenBound : MonoBehaviour {
 		maxY = background.renderer.bounds.max.y - 2.5f * transform.localScale.y;
 		minY = background.renderer.bounds.min.y + 2.5f * transform.localScale.y;
 
+		GameObject.Find("Main Camera").GetComponent<GenerateBubbles>().background = background;
+
 		backgroundNew = false;
 	}
 
-	//Change the background
-	void ChangeBackground()
-	{
-		maxX = background.renderer.bounds.max.x - 20f;
-		minX = background.renderer.bounds.min.x + 20f;
-		maxY = background.renderer.bounds.max.y - 2.5f * transform.localScale.y;
-		minY = background.renderer.bounds.min.y + 2.5f * transform.localScale.y;
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		Vector3 newPosition = transform.position;
@@ -70,6 +63,15 @@ public class ScreenBound : MonoBehaviour {
 			ChangeBackground();
 			backgroundNew = true;
 		}
+	}
+
+	//Change the background
+	void ChangeBackground()
+	{
+		maxX = background.renderer.bounds.max.x - 20f;
+		minX = background.renderer.bounds.min.x + 20f;
+		maxY = background.renderer.bounds.max.y - 2.5f * transform.localScale.y;
+		minY = background.renderer.bounds.min.y + 2.5f * transform.localScale.y;
 	}
 
 	void NewBackground()

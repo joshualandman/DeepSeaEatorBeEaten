@@ -46,6 +46,10 @@ public class Player : MonoBehaviour {
 			Flip();
 		else if(move > 0 && facingRight)
 			Flip();
+
+		//if the player wins
+		if(score >= 40)
+			Application.LoadLevel("win");
 	}
 
 	void Flip()

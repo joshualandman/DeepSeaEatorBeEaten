@@ -86,7 +86,7 @@ public class GenerateEnemies : MonoBehaviour {
 		//And if statement to decide which side of the screen to spawn on
 		if (Random.Range(0f, 1f) > .5f)
 		{
-			Debug.Log ("Start Right");
+			//Debug.Log ("Start Right");
 
 			//Set the location for new enemy
 			location = new Vector3(background.renderer.bounds.max.x,Random.Range(background.renderer.bounds.min.y + 3, background.renderer.bounds.max.y - 3),0);
@@ -105,7 +105,7 @@ public class GenerateEnemies : MonoBehaviour {
 		}
 		else
 		{
-			Debug.Log ("Start Left");
+			//Debug.Log ("Start Left");
 
 			//Set the location for new enemy
 			location = new Vector3(background.renderer.bounds.min.x + gameObject.transform.localScale.x,Random.Range(background.renderer.bounds.min.y + 3, background.renderer.bounds.max.y - 3),0);
