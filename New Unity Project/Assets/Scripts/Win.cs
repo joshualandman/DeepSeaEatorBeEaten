@@ -2,6 +2,14 @@
 using System.Collections;
 
 public class Win : MonoBehaviour {
+
+
+
+	void Start()
+	{
+		GameObject.Find ("FinalScoreText").GetComponent<TextMesh> ().text = "Final Score: " + GameObject.Find ("GameObject").GetComponent<ScoreKeeper> ().score;
+	}
+
 	// Update is called once per frame
 	void Update()
 	{

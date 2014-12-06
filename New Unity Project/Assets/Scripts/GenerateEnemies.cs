@@ -54,7 +54,7 @@ public class GenerateEnemies : MonoBehaviour {
 		if (timeCount == 80)
 		{
 			//An if statement to make spawning a fish between size 1 and 3 happen more often
-			if(Random.Range(0,1f) < .8f)
+			if(Random.Range(0,1f) < .9f)
 			{
 				int index = Random.Range (0, 2);
 				

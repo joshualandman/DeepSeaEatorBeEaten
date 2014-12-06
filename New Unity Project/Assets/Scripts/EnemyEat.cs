@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class EnemyEat : MonoBehaviour {
@@ -40,7 +40,6 @@ public class EnemyEat : MonoBehaviour {
 						//Kill the Player
 						//Debug.Log("You Died!!!");
 						Application.LoadLevel("end");
-						//Destroy(player);
 					}
 				}
 			}

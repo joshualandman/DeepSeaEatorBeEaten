@@ -16,7 +16,7 @@ public class BubbleMovement : MonoBehaviour {
 		transform.position += velocity;
 
 		//Destroy this Gameobject of it swims off screen
-		if(transform.position.y > GameObject.Find("Main Camera").GetComponent<GenerateBubbles>().background.renderer.bounds.max.y + 50)
-		{ Destroy(transform.gameObject); }
+		if(transform.position.y > GameObject.Find("Main Camera").GetComponent<GenerateBubbles>().background.renderer.bounds.max.y + 10)
+		{ Destroy(transform.gameObject);}
 	}
 }

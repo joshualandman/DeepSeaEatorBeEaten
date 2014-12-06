@@ -2,6 +2,14 @@
 using System.Collections;
 
 public class Restart : MonoBehaviour {
+
+
+
+	void Start()
+	{
+		GameObject.Find ("FinalScoreText").GetComponent<TextMesh> ().text = "Final Score: " + GameObject.Find ("GameObject").GetComponent<ScoreKeeper> ().score;
+	}
+
 	void Update()
 	{
 		RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),Vector2.zero);

@@ -76,8 +76,8 @@ public class ScreenBound : MonoBehaviour {
 
 	void NewBackground()
 	{
-		background.transform.position += new Vector3(0, 0, 3);
-		darknessOverlay.transform.position += new Vector3(0, 0, 3);
+		background.transform.position += new Vector3(0, -500, 0);
+		darknessOverlay.transform.position += new Vector3(0, -500, 0);
 		GameObject.Find("top-sea").transform.position += new Vector3 (0, 0, 3);
 		background = background2;
 		GameObject.Find("Main Camera").GetComponent<GenerateEnemies>().background = background;

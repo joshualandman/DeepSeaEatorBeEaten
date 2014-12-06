@@ -51,8 +51,11 @@ public class Eat : MonoBehaviour {
 	
 	void eatEnemy(GameObject gameobject)
 	{
+
+		//Debug.Log ("Enemy number is " + (enemyNum));
+
 		//Adds the enemy size to the player's score
-		transform.parent.gameObject.GetComponent<Player>().score += (int)enemyNum;
+		transform.parent.gameObject.GetComponent<Player> ().score += Mathf.RoundToInt (enemyNum);
 
 		//Adds the enemy size to a counter to determine if all other enemies on the screen should have their size decreased
 		GameObject.Find ("Main Camera").GetComponent<GenerateEnemies>().ReduceSize ();
