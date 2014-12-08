@@ -7,7 +7,7 @@ public class Win : MonoBehaviour {
 
 	void Start()
 	{
-		GameObject.Find ("FinalScoreText").GetComponent<TextMesh> ().text = "Final Score: " + GameObject.Find ("GameObject").GetComponent<ScoreKeeper> ().score;
+		GameObject.Find ("FinalScoreText").GetComponent<TextMesh> ().text = "Final Score: " + GameObject.Find ("ScoreGameObject").GetComponent<ScoreKeeper> ().score;
 	}
 
 	// Update is called once per frame

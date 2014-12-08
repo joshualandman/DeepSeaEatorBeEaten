@@ -7,7 +7,7 @@ public class Restart : MonoBehaviour {
 
 	void Start()
 	{
-		GameObject.Find ("FinalScoreText").GetComponent<TextMesh> ().text = "Final Score: " + GameObject.Find ("GameObject").GetComponent<ScoreKeeper> ().score;
+		GameObject.Find ("FinalScoreText").GetComponent<TextMesh> ().text = "Final Score: " + GameObject.Find ("ScoreGameObject").GetComponent<ScoreKeeper> ().score;
 	}
 
 	void Update()
