@@ -57,7 +57,7 @@ public class ScreenBound : MonoBehaviour {
 		//Set the players new position
 		transform.position = newPosition;
 		
-		if(GameObject.Find("Player").GetComponent<Player>().score == 25 && !backgroundNew)
+		if(GameObject.Find("Player").GetComponent<Player>().score == 30 && !backgroundNew)
 		{
 			NewBackground();
 			ChangeBackground();
