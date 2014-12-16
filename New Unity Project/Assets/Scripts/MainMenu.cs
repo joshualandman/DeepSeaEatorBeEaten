@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour {
 		{
 			//main menu
 				//start the game
-			if(hit.collider.name == "Start") //hover
+			if(main == true && hit.collider.name == "Start") //hover
 			{
 				if(Input.GetMouseButtonDown(0)) //click
 				{
