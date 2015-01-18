@@ -131,7 +131,4 @@ public class Player : MonoBehaviour {
 	public void endBiteAnim(){
 		anim.SetBool("hasEaten", false);
 	}
-
-
-
 }
